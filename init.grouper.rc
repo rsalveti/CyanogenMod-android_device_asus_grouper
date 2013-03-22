@@ -237,6 +237,11 @@ service btmacreader /system/bin/btmacreader
     class main
     oneshot
 
+# Start/initialize bluetooth
+service btenable /system/xbin/bttest enable
+    class main
+    oneshot
+
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -e/data/misc/wifi/entropy.bin
     #   we will start as root and wpa_supplicant will switch to user wifi
@@ -312,6 +317,14 @@ service bugreport /system/bin/bugmailer.sh -b /system/media/audio/ui/Dock.ogg -e
     disabled
     oneshot
     keycodes 115 114
+
+#BCM
+service hciattach /system/bin/brcm_patchram_plus --enable_hci --scopcm=0,2,0,0,0,0,0,0,0,0 \
+    --baudrate 3000000 --use_baudrate_for_download --patchram /etc/firmware/bcm4330.hcd --no2bytes --enable_lpm --tosleep=50000 /dev/ttyHS2
+  user bluetooth
+  group bluetooth net_bt_admin
+  class main
+  disabled
 
 # Start GPS daemon
   on boot
