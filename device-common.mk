@@ -73,6 +73,7 @@ PRODUCT_PACKAGES := \
     l2ping \
     hcitool \
     bttest \
+    brcm_patchram_plus \
     com.android.future.usb.accessory
 
 # for bugmailer
