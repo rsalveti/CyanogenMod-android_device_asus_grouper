@@ -86,3 +86,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 
 TARGET_KERNEL_SOURCE := kernel/asus/grouper
 TARGET_KERNEL_CONFIG := cyanogenmod_grouper_defconfig
+
+TARGET_KERNEL_UBUNTU := true
+TARGET_KERNEL_UBUNTU_META := linux-image-grouper
+TARGET_KERNEL_UBUNTU_SERIES := saucy
